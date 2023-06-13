@@ -28,8 +28,10 @@ class _MyAppState extends State<MyApp> {
     _flutterFidelSdkPlugin.apiKey = "<YOUR_API_KEY>";
     _flutterFidelSdkPlugin.programKey = "<PROGRAM_KEY>";
     _flutterFidelSdkPlugin.programName = "<PROGRAM_NAME>";
-    _flutterFidelSdkPlugin.termsAndConditionsURL = "<TERMS_AND_CONDS_URL>";
+    _flutterFidelSdkPlugin.termsAndConditionsURL = "https://fidel.uk";
     _flutterFidelSdkPlugin.customerIdentifier = "<YOUR_CUSTOMER_ID>";
+    _flutterFidelSdkPlugin.allowedCountries = [FidelAllowedCountries.unitedStates, FidelAllowedCountries.canada];
+
     _flutterFidelSdkPlugin.launchFidelSDK(
         onCompleted: (data) {
           print(data);

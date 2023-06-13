@@ -24,7 +24,7 @@ abstract class FlutterFidelSdkPlatform extends PlatformInterface {
   }
 
   Future<String?> launchFidelSDK(String apiKey, String programKey, String termsAndConditionsURL, String customerIdentifier,
-      {String? programName, String? companyName, String? privacyURL, String? deleteInstructions}) {
+      {String? programName, String? companyName, String? privacyURL, String? deleteInstructions, String? allowedCountries}) {
     throw UnimplementedError('launchFidelSDK() has not been implemented.');
   }
 }

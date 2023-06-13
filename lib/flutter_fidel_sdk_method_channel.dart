@@ -12,7 +12,8 @@ class MethodChannelFlutterFidelSdk extends FlutterFidelSdkPlatform {
       {String? programName,
       String? companyName,
       String? privacyURL,
-      String? deleteInstructions}) async {
+      String? deleteInstructions,
+      String? allowedCountries}) async {
     final result =
         await methodChannel.invokeMethod<String>('launch_fidel_sdk', {
       "api_key": apiKey,
@@ -22,7 +23,8 @@ class MethodChannelFlutterFidelSdk extends FlutterFidelSdkPlatform {
       "customerId": customerIdentifier,
       "companyName": companyName,
       "privacyURL": privacyURL,
-      "deleteInstructions": deleteInstructions
+      "deleteInstructions": deleteInstructions,
+      "allowedCountries": allowedCountries
     });
     return result;
   }

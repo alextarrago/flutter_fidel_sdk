@@ -12,6 +12,16 @@ class FidelSDKError {
   }
 }
 
+enum FidelAllowedCountries {
+  canada,
+  ireland,
+  japan,
+  sweden,
+  unitedArabEmirates,
+  unitedKingdom,
+  unitedStates,
+}
+
 class FlutterFidelSdk {
   static final FlutterFidelSdk _instance = FlutterFidelSdk._internal();
 
@@ -31,6 +41,8 @@ class FlutterFidelSdk {
   String? companyName;
   String? privacyURL;
   String? deleteInstructions;
+
+  List<FidelAllowedCountries>? allowedCountries = [];
 
   launchFidelSDK(
       {required Function(FidelSDKError error) onFailed,
@@ -52,7 +64,7 @@ class FlutterFidelSdk {
           programName: programName,
           companyName: companyName,
           privacyURL: privacyURL,
-          deleteInstructions: deleteInstructions);
+          deleteInstructions: deleteInstructions, allowedCountries: generateCountries());
 
       if (nativeData == "User canceled card linking.") {
         onUserCancelled();
@@ -63,5 +75,18 @@ class FlutterFidelSdk {
       onFailed(FidelSDKError(
           errorMessage: "An exception was thrown", errorCode: "1"));
     }
+  }
+
+  String? generateCountries() {
+    var allowedCountries = "";
+    if (this.allowedCountries!.isNotEmpty) {
+      for (var country in this.allowedCountries!) {
+        allowedCountries += "${country.toString().split('.').last},";
+      }
+      allowedCountries = allowedCountries.substring(
+          0, allowedCountries.length - 1);
+    }
+    return allowedCountries;
+
   }
 }

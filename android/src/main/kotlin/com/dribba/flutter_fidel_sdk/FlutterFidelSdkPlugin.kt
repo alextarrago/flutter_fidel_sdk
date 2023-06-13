@@ -10,6 +10,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.embedding.android.FlutterActivity
 import com.fidel.sdk.Fidel
+import com.fidel.sdk.Fidel.Country
 import com.fidel.sdk.LinkResult
 import com.fidel.sdk.LinkResultError
 import com.fidel.sdk.data.abstraction.FidelCardLinkingObserver
@@ -64,6 +65,29 @@ class FlutterFidelSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             val companyName: String? = call.argument("companyName");
             val privacyURL: String? = call.argument("privacyURL");
             val deleteInstructions: String? = call.argument("deleteInstructions");
+
+            val allowedCountries: String? = call.argument("allowedCountries");
+            allowedCountries?.let { countriesString ->
+                val countries = countriesString.split(",")
+
+                val allowedCountries: MutableList<Country> = mutableListOf()
+                for (country in countries) {
+                    when (country) {
+                        "canada" -> allowedCountries.add(Country.CANADA)
+                        "unitedArabEmirates" -> allowedCountries.add(Country.UNITED_ARAB_EMIRATES)
+                        "japan" -> allowedCountries.add(Country.JAPAN)
+                        "ireland" -> allowedCountries.add(Country.IRELAND)
+                        "unitedKingdom" -> allowedCountries.add(Country.UNITED_KINGDOM)
+                        "sweden" -> allowedCountries.add(Country.SWEDEN)
+                        "unitedStates" -> allowedCountries.add(Country.UNITED_STATES)
+                        else -> allowedCountries.add(Country.UNITED_STATES)
+                    }
+                }
+                if (allowedCountries.isNotEmpty()) {
+                    Fidel.allowedCountries = allowedCountries.toTypedArray()
+                    Fidel.defaultSelectedCountry = allowedCountries[0]
+                }
+            }
 
             if (companyName != null) {
                 Fidel.companyName = companyName;
