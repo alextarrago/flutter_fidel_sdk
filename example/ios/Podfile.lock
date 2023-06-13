@@ -1,0 +1,29 @@
+PODS:
+  - Fidel (1.10.3)
+  - Flutter (1.0.0)
+  - flutter_fidel_sdk (0.8.0):
+    - Fidel
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_fidel_sdk (from `.symlinks/plugins/flutter_fidel_sdk/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Fidel
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_fidel_sdk:
+    :path: ".symlinks/plugins/flutter_fidel_sdk/ios"
+
+SPEC CHECKSUMS:
+  Fidel: d77379429611d129fcd6d578c0108d4b5b4718c4
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_fidel_sdk: 158a3dfac3270279f8165d6140753f2799013ae4
+
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+
+COCOAPODS: 1.12.1
