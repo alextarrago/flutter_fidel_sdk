@@ -15,8 +15,20 @@ public class FlutterFidelSdkPlugin: NSObject, FlutterPlugin {
               let apiKey = args["api_key"] as? String,
              let programId = args["program_key"] as? String,
              let programName = args["program_name"] as? String,
-             let termsConditionsURL = args["terms"] as? String {
+             let termsConditionsURL = args["terms"] as? String,
+             let customerIdentifier = args["customerId"] as? String {
 
+            if (let companyName = args["companyName"] as? String) {
+                Fidel.companyName = companyName
+            }
+            if (let privacyURL = args["privacyURL"] as? String) {
+                Fidel.privacyURL = privacyURL
+            }
+            if (let deleteInstructions = args["deleteInstructions"] as? String) {
+                Fidel.deleteInstructions = deleteInstructions
+            }
+
+            Fidel.metaData = [ "id": customerIdentifier ]
               Fidel.apiKey = apiKey
               Fidel.programId = programId
               Fidel.programName = programName

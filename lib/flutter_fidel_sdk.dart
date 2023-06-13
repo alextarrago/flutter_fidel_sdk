@@ -26,6 +26,11 @@ class FlutterFidelSdk {
   String? programKey;
   String? programName;
   String? termsAndConditionsURL;
+  String? customerIdentifier;
+
+  String? companyName;
+  String? privacyURL;
+  String? deleteInstructions;
 
   launchFidelSDK(
       {required Function(FidelSDKError error) onFailed,
@@ -37,11 +42,17 @@ class FlutterFidelSdk {
     if (termsAndConditionsURL == null) {
       throw Exception("termsAndConditionsURL is a required parameter");
     }
+    if (customerIdentifier == null) {
+      throw Exception("customerIdentifier is a required parameter");
+    }
 
     try {
       var nativeData = await FlutterFidelSdkPlatform.instance.launchFidelSDK(
-          apiKey!, programKey!, termsAndConditionsURL!,
-          programName: programName);
+          apiKey!, programKey!, termsAndConditionsURL!, customerIdentifier!,
+          programName: programName,
+          companyName: companyName,
+          privacyURL: privacyURL,
+          deleteInstructions: deleteInstructions);
 
       if (nativeData == "User canceled card linking.") {
         onUserCancelled();

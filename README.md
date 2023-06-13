@@ -1,4 +1,4 @@
-# Flutter Fidel SDK Integration (flutter_fidel_sdk)
+# Flutter Fidel SDK
 
 A Flutter plugin to integrate the Fidel SDK into your Flutter app.
 

@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     _flutterFidelSdkPlugin.programKey = "<PROGRAM_KEY>";
     _flutterFidelSdkPlugin.programName = "<PROGRAM_NAME>";
     _flutterFidelSdkPlugin.termsAndConditionsURL = "<TERMS_AND_CONDS_URL>";
+    _flutterFidelSdkPlugin.customerIdentifier = "<YOUR_CUSTOMER_ID>";
     _flutterFidelSdkPlugin.launchFidelSDK(
         onCompleted: (data) {
           print(data);

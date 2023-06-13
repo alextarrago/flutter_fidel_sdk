@@ -16,6 +16,14 @@ import com.fidel.sdk.data.abstraction.FidelCardLinkingObserver
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import android.util.Log
+
+import org.json.JSONException
+
+import org.json.JSONObject
+
+
+
 
 class FlutterFidelSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var channel: MethodChannel
@@ -51,11 +59,33 @@ class FlutterFidelSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             val programKey: String? = call.argument("program_key");
             val programName: String? = call.argument("program_name");
             val terms: String? = call.argument("terms");
+            val customerIdentifier: String? = call.argument("customerId");
+
+            val companyName: String? = call.argument("companyName");
+            val privacyURL: String? = call.argument("privacyURL");
+            val deleteInstructions: String? = call.argument("deleteInstructions");
+
+            if (companyName != null) {
+                Fidel.companyName = companyName;
+            }
+            if (privacyURL != null) {
+                Fidel.privacyURL = privacyURL;
+            }
+            if (deleteInstructions != null) {
+                Fidel.deleteInstructions = deleteInstructions;
+            }
+
 
             Fidel.apiKey = apiKey;
             Fidel.programId = programKey;
             Fidel.programName = programName;
             Fidel.termsConditionsURL = terms;
+
+            val jsonMeta = JSONObject()
+            try {
+                jsonMeta.put("id", customerIdentifier)
+            } catch (e: JSONException) { }
+            Fidel.metaData = jsonMeta
 
             Fidel.setCardLinkingObserver(object : FidelCardLinkingObserver {
                 override fun onCardLinkingFailed(linkResultError: LinkResultError) {
