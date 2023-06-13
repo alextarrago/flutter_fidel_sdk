@@ -1,7 +1,7 @@
 name: flutter_fidel_sdk
 description: A Flutter plugin integrating the Fidel SDK for Android and iOS.
 version: 0.0.1
-homepage: https://www.dribba.com
+homepage: https://github.com/alextarrago/flutter_fidel_sdk
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
